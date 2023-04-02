@@ -2,8 +2,10 @@ package com.example.anew;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.Switch;
 import android.widget.TextView;
 
@@ -13,11 +15,34 @@ public class MainActivity extends AppCompatActivity {
     private String operation= "";
     private  Integer first, second, sum;
 
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
          textView = findViewById(R.id.text_view);
+        Button ravno = findViewById(R.id.btn_ravno);
+        Button second = findViewById(R.id.btn_second);
+
+        findViewById(R.id.btn_second).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String data = textView.getText().toString();
+                Intent intent = new Intent(MainActivity.this,SecondActivity.class);
+                intent.putExtra("kay", data);
+                startActivity(intent);
+            }
+        });
+          ravno.setOnClickListener(new View.OnClickListener() {
+              @Override
+              public void onClick(View view) {
+                  second.setVisibility(View.VISIBLE);
+              }
+          });
+
+
     }
 
    public void setNumber (String number) {
@@ -27,6 +52,8 @@ public class MainActivity extends AppCompatActivity {
             textView.append(number);
         }
     }
+
+
 
  public void onNumberClick (View view){
         switch (view.getId()){
